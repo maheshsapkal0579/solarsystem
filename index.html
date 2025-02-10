@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful Solar System</title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .solar-system {
+            position: relative;
+            width: 800px;
+            height: 800px;
+        }
+
+        /* Sun Styles */
+        .sun {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(#ffd700, #ff4500);
+            border-radius: 50%;
+            box-shadow: 0 0 80px #ff4500;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+
+        /* Orbit Paths */
+        .orbit {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Planet Common Styles */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Planet Labels */
+        .planet-label {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            white-space: nowrap;
+            transform: translateX(-50%);
+            top: -25px;
+        }
+
+        /* Individual Planets */
+        .mercury { width: 12px; height: 12px; background: #A0522D; }
+        .venus { width: 18px; height: 18px; background: #DEB887; }
+        .earth { width: 20px; height: 20px; background: #4169E1; }
+        .mars { width: 16px; height: 16px; background: #CD5C5C; }
+        .jupiter { width: 40px; height: 40px; background: #DAA520; }
+        .saturn { width: 35px; height: 35px; background: #F4A460; }
+        .uranus { width: 25px; height: 25px; background: #87CEEB; }
+        .neptune { width: 24px; height: 24px; background: #1E90FF; }
+
+        /* Earth's Moon System */
+        .moon-orbit {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            animation: orbit 3s linear infinite;
+        }
+
+        .moon {
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px white;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Orbital Speeds */
+        #mercury-orbit { width: 120px; height: 120px; animation: orbit 3s linear infinite; }
+        #venus-orbit { width: 180px; height: 180px; animation: orbit 6s linear infinite; }
+        #earth-orbit { width: 250px; height: 250px; animation: orbit 10s linear infinite; }
+        #mars-orbit { width: 320px; height: 320px; animation: orbit 18s linear infinite; }
+        #jupiter-orbit { width: 450px; height: 450px; animation: orbit 30s linear infinite; }
+        #saturn-orbit { width: 550px; height: 550px; animation: orbit 45s linear infinite; }
+        #uranus-orbit { width: 650px; height: 650px; animation: orbit 60s linear infinite; }
+        #neptune-orbit { width: 750px; height: 750px; animation: orbit 75s linear infinite; }
+
+        /* Stars Background */
+        .stars div {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="solar-system">
+        <div class="sun"></div>
+        
+        <!-- Mercury -->
+        <div class="orbit" id="mercury-orbit">
+            <div class="planet mercury">
+                <span class="planet-label">Mercury</span>
+            </div>
+        </div>
+        
+        <!-- Venus -->
+        <div class="orbit" id="venus-orbit">
+            <div class="planet venus">
+                <span class="planet-label">Venus</span>
+            </div>
+        </div>
+        
+        <!-- Earth with Moon -->
+        <div class="orbit" id="earth-orbit">
+            <div class="planet earth">
+                <span class="planet-label">Earth</span>
+                <div class="moon-orbit">
+                    <div class="moon"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mars -->
+        <div class="orbit" id="mars-orbit">
+            <div class="planet mars">
+                <span class="planet-label">Mars</span>
+            </div>
+        </div>
+        
+        <!-- Jupiter -->
+        <div class="orbit" id="jupiter-orbit">
+            <div class="planet jupiter">
+                <span class="planet-label">Jupiter</span>
+            </div>
+        </div>
+        
+        <!-- Saturn -->
+        <div class="orbit" id="saturn-orbit">
+            <div class="planet saturn">
+                <span class="planet-label">Saturn</span>
+            </div>
+        </div>
+        
+        <!-- Uranus -->
+        <div class="orbit" id="uranus-orbit">
+            <div class="planet uranus">
+                <span class="planet-label">Uranus</span>
+            </div>
+        </div>
+        
+        <!-- Neptune -->
+        <div class="orbit" id="neptune-orbit">
+            <div class="planet neptune">
+                <span class="planet-label">Neptune</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create twinkling stars
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
